@@ -21,7 +21,20 @@ export async function rateHero(req: any, res: any) {
     const id = decoded.userId;
     if (!id) throw new Error("error getting id");
 
-    const userFound = await UserModel.findOne({ _id: id });
+    const isHeroRated = await MyHeroModel.findOne({ creatorId: id });
+
+    if(isHeroRated){
+    return  res.status(20).json({message:"already rated"});
+    }
+
+    const userFound = await UserModel.findOneAndUpdate(
+      { _id: id },
+      {
+        $inc: { totalRating: +rating, totalRatingCount: 1 },
+      },
+      { new: true }
+    );
+
     if (!userFound) throw new Error("user not found!");
 
     const _rateHero = new MyHeroModel({

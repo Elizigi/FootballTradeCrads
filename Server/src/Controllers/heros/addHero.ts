@@ -1,4 +1,4 @@
-import { HeroModel } from "../../Model/heroList";
+import { HeroModel } from "../../Model/heroModel";
 import { UserModel } from "../../Model/userModel";
 import { secretKey } from "../../server";
 import jwt from "jwt-simple";
@@ -15,7 +15,7 @@ export async function addHero(req: any, res: any) {
 
     const id = decoded.userId;
     if (!id) throw new Error("error getting id");
-    
+
     const userFound = await UserModel.findOne({ _id: id });
     if (!userFound) throw new Error("user not found!");
 
@@ -26,6 +26,8 @@ export async function addHero(req: any, res: any) {
       age: age,
       rating: 0,
       position: position,
+      totalRating: 0,
+      totalRatingCount: 0,
     });
     await _hero.validate();
 
