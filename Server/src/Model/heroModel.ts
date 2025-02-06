@@ -6,7 +6,15 @@ const HeroSchema = new Schema({
     team:String,
     age:Number,
     rating:Number,
-    position:String
+    position:String,
+    totalRating:{
+        type:Number,
+        required:true,
+    },
+    totalRatingCount:{
+        type:Number,
+        required:true,
+    },
 });
 
 export const HeroModel = model('Hero',HeroSchema);

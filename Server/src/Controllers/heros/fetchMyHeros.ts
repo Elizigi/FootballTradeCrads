@@ -20,15 +20,13 @@ export async function fetchMyHeros(req: any, res: any) {
     if (!userFound) throw new Error("user not found!");
 
     const myHeros = await MyHeroModel.find({ creatorId: id });
-    myHeros.forEach(async myHero=>{
-      const ratings =  await MyHeroModel.find({heroId:myHero._id});
-      myHero.rating =
-      ratings.reduce((sum, r) => sum + (r.rating ?? 0), 0) / (ratings.length || 1);    })
-      
+    
     if (!myHeros) {
       res.status(200).json({message:"no data saved", myHeros});
     }
+
     res.status(200).json({message:"successfully fetched", myHeros});
+    
   } catch (err: any) {
     console.log(err);
     res.status(500).json({message:"Error fetching data" , err});

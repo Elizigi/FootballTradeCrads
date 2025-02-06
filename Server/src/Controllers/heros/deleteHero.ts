@@ -1,4 +1,4 @@
-import { HeroModel } from "../../Model/heroList";
+import { HeroModel } from "../../Model/heroModel";
 
 
 export async function deleteHero(req: any, res: any) {
