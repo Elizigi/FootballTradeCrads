@@ -1,4 +1,5 @@
 import { MyHeroModel } from "../../Model/myHeroJoinedTable";
+import { UserModel } from "../../Model/userModel";
 import { secretKey } from "../../server";
 import jwt from "jwt-simple";
 
@@ -17,20 +18,20 @@ export async function rateHero(req: any, res: any) {
       throw new Error("Invalid rating value");
     }
 
-
     const id = decoded.userId;
     if (!id) throw new Error("error getting id");
 
-    const _rateHero = 
-     new MyHeroModel({
-        creatorId:id,
-        heroId:heroId,
-       rating:rating,
-        });
-        await _rateHero.validate();
-    
-       await _rateHero.save();
+    const userFound = await UserModel.findOne({ _id: id });
+    if (!userFound) throw new Error("user not found!");
 
+    const _rateHero = new MyHeroModel({
+      creatorId: id,
+      heroId: heroId,
+      rating: rating,
+    });
+    await _rateHero.validate();
+
+    await _rateHero.save();
   } catch (err: any) {
     console.log(err);
     res.status(500).json({ message: "Error fetching data", err });
