@@ -20,6 +20,8 @@ export async function addHero(req: any, res: any) {
     if (!userFound) throw new Error("user not found!");
 
     const _hero = new HeroModel({
+      creatorId:id,
+      myCard:false,
       fullName: fullName,
       img: img,
       team: team,
@@ -29,9 +31,11 @@ export async function addHero(req: any, res: any) {
       totalRating: 0,
       totalRatingCount: 0,
     });
+
     await _hero.validate();
 
     await _hero.save();
+    
   } catch (err: any) {
     console.log(err);
     res.status(500).json({ message: "Error fetching data", err });

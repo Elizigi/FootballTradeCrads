@@ -17,11 +17,11 @@ export async function rateHero(req: any, res: any) {
     if (typeof rating !== "number" || rating < 0 || rating > 5) {
       throw new Error("Invalid rating value");
     }
-
+    
     const id = decoded.userId;
     if (!id) throw new Error("error getting id");
 
-    const isHeroRated = await MyHeroModel.findOne({ creatorId: id });
+    const isHeroRated = await MyHeroModel.findOne({ creatorId: id ,heroId:heroId});
 
     if(isHeroRated){
     return  res.status(20).json({message:"already rated"});
@@ -45,6 +45,7 @@ export async function rateHero(req: any, res: any) {
     await _rateHero.validate();
 
     await _rateHero.save();
+    res.status(200).json({message:"rated successfully"})
   } catch (err: any) {
     console.log(err);
     res.status(500).json({ message: "Error fetching data", err });

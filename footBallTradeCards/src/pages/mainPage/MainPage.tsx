@@ -1,8 +1,8 @@
-import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import styles from "./MainPage.module.scss";
 import Players from "../players/Players";
 import ContactUs from "../contactUs/Contactus";
+import HeroCard from '../../componants/HeroCard';
 
 const Footer = () => {
   return (
@@ -25,6 +25,8 @@ const MainPage = () => {
         <Route path="/addPlayers" element={<Players />} />
         <Route path="/contactUs" element={<ContactUs />} />
       </Routes>
+      <HeroCard age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
+
     </div>
   );
 };
