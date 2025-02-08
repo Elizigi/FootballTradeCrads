@@ -1,4 +1,5 @@
 
+import { HeroModel } from "../../Model/heroModel";
 import { MyHeroModel } from "../../Model/myHeroJoinedTable";
 import { UserModel } from "../../Model/userModel";
 import { secretKey } from "../../server";
@@ -19,8 +20,10 @@ export async function fetchMyHeros(req: any, res: any) {
     const userFound = await UserModel.findOne({ _id: id });
     if (!userFound) throw new Error("user not found!");
 
-    const myHeros = await MyHeroModel.find({ creatorId: id });
-    
+    const myHeros = await HeroModel.find({ creatorId: id });
+
+    myHeros.forEach(hero=>(hero.myCard=true));
+
     if (!myHeros) {
       res.status(200).json({message:"no data saved", myHeros});
     }

@@ -1,11 +1,12 @@
 import  { model, Schema } from "mongoose";
 
 const HeroSchema = new Schema({
+    creatorId:String,
+    myCard:Boolean,
     fullName:String,
     img:String,
     team:String,
     age:Number,
-    rating:Number,
     position:String,
     totalRating:{
         type:Number,

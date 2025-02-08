@@ -23,8 +23,12 @@ export async function fetchHeros(req: any, res: any) {
     if (!heros) {
       res.status(200).json({message:"no data saved", heros});
     }
-   
-    res.status(200).json({message:"successfully fetched", heros});
+    
+    heros.forEach(hero => {
+      hero.myCard = hero.creatorId === id;
+    });
+
+      res.status(200).json({message:"successfully fetched", heros});
 
   } catch (err: any) {
     console.log(err);
