@@ -1,32 +1,39 @@
-import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import styles from "./MainPage.module.scss";
-import Players from "../players/Players";
-import ContactUs from "../contactUs/Contactus";
-
-const Footer = () => {
-  return (
-    <div className={styles.footer}>
-      <Link to="/mainPage">Home Page</Link>
-      <Link to="/mainPage/addPlayers">Add Player</Link>
-      <Link to="/mainPage/contactUs">Contact Us</Link>
-    </div>
-  );
-};
+import React, { useEffect } from 'react';
+import { useMainPageMW } from "./mainPageMW";
+import Header from '../header/Header';
+import { hero } from './playerModel';
 
 const MainPage = () => {
-  return (
-    <div>
-      <Footer />
+    const { heros, fetchAllHeros } = useMainPageMW<hero[]>([]);
 
-      {/* הנתיבים מוצגים בתוך MainPage */}
-      <Routes>
-        <Route path="/" element={<h2>Choose an option above</h2>} />
-        <Route path="/addPlayers" element={<Players />} />
-        <Route path="/contactUs" element={<ContactUs />} />
-      </Routes>
-    </div>
-  );
+    useEffect(() => {
+        fetchAllHeros();
+        console.log("Players updated:", heros);
+    }, []);
+
+    return (
+        <div>
+            <h1>All Heroes:</h1>
+            <Header />
+            <div>
+                {heros.heros?.length > 0 ? (
+                    heros.heros.map((hero: hero, index) => (
+                        <div key={index} className="player-card">
+                            <h1>{hero.fullName}</h1>
+                            <p>Position: {hero.position}</p>
+                            <p>Age: {hero.age}</p>
+                            <p>Team: {hero.team}</p>
+                            <p>Rating: {hero.totalRating}</p>
+                            <p>Total rating: {hero.totalRatingCount}</p>
+                            <p>----------------------------------</p>
+                        </div>
+                    ))
+                ) : (
+                    <h1>No players available</h1>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default MainPage;
