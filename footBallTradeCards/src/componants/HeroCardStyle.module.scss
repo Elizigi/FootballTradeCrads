@@ -4,18 +4,16 @@
   border-radius: 12px;
   padding: 20px;
   color: white;
-  display: inline-block;
-  margin: 20px;
   user-select: none;
   -webkit-user-drag: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
-  perspective: 1000px; 
-
+  perspective: 1000px;
+  margin-bottom: 5px;
   &:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); // Stronger shadow on hover
-    transform: rotateY(15deg); 
+    transform: rotateY(15deg);
   }
   img {
     width: 200px;
@@ -27,6 +25,11 @@
   p {
     margin-top: 0;
   }
+}
+
+.cardWrapper {
+  display: inline-block;
+  margin: 20px;
 }
 .cardHeader {
   font-size: 1.6rem;
@@ -57,4 +60,18 @@
   padding: 0;
   font-size: 30px;
   color: gold;
+}
+.rate {
+  background-color: rgb(238, 232, 114);
+  margin: 0 auto;
+  position: relative;
+  margin-left: 2.5px;
+}
+.delete {
+
+  background-color: rgba(255, 0, 0, 0.813);
+  margin: 0 auto;
+  margin-right: 2.5px;
+
+  position: relative;
 }

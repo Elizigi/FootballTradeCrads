@@ -25,7 +25,8 @@ const MainPage = () => {
         <Route path="/addPlayers" element={<Players />} />
         <Route path="/contactUs" element={<ContactUs />} />
       </Routes>
-      <HeroCard age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
+      <HeroCard id='dwa' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
+      <HeroCard id='wwwww' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
 
     </div>
   );
