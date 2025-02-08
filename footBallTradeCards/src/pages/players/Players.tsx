@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./Players.module.scss";
+import Header from '../header/Header';
 
 const PlayerForm = () => {
     const [formData, setFormData] = useState({
@@ -35,33 +36,11 @@ async function handleSubmit (event: React.FormEvent) {
         }
     };
 
-    // fullName, img, team, age, position 
 
-  //   const response = await fetch('http://localhost:3000/api/auth/register', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     credentials: 'include', 
-  //     body: JSON.stringify({_userName, email, password,rePassword}),
-  // });
-
-  // if (response.status == 400) {
-  //   setIsMessage(true);
-  //   setMessage("Email already exists");
-  //   return;
-  // }
-
-  // if (response.status !== 200) {
-  //   alert("try again")
-  // }
-
-  // if (response.status === 200) {
-  //   setIsMessage(false)
-  //   alert("Registration successful")
-  //   navigate('/login');
-  // }
 
     return (
         <div className={styles.formContainer}>
+          <Header />
             <h2>Player Registration</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="fullName">Full Name</label>
