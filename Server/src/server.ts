@@ -2,7 +2,7 @@ import express from 'express'
 import authRoutes from "./Routes/authRoutes";
 import playerRoutes from "./Routes/herosRoutes";
 import cookieParser from 'cookie-parser';
-import cors from"cors"
+import cors from "cors"
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
@@ -11,17 +11,15 @@ const port = 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cors({
-  origin: 'http://localhost:5173', // Exact origin, not wildcard
-  credentials: true
-}));
+app.use(cors({ origin: "*"})); // לא מומלץ בפרודקשן
+
 
 
 export const secretKey = process.env.SECRET_JWT || "1234";
 export const saltRounds = Number(process.env.SALT_BCRYPT) || 3;
 
 
-app.use("/api/auth/", authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/heroes", playerRoutes);
 
 const dbUrl = process.env.DB_URL;

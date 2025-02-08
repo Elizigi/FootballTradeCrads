@@ -1,0 +1,28 @@
+.footer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .mainTtitle {
+    margin-top: 60px;
+  }
+  

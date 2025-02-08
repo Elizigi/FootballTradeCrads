@@ -5,11 +5,6 @@ function LoginForm() {
 
     const navigate = useNavigate();
 
-function checkLogin(){
-    alert("עובדים על זה");
-  // ali work for this
-  
-}
 
 function goToRegister(){
     navigate("/register")
@@ -20,22 +15,42 @@ function goToRegister(){
     password: "",
   });
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [isMessage, setIsMessage] = useState(false);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    setError("");
+
 
     if (!formData.email || !formData.password) {
       setError("All fields must be filled");
       return;
     }
+    
+    const email = formData.email;
+    const password = formData.password;
 
-    console.log("Logged in successfully!", formData);
-    // ali work for this
+    const response = await fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({email, password}),
+  });
+
+  if (response.status === 400) {
+    setIsMessage(true);
+    setMessage("Invalid email or password");
+
+  }
+
+  if (response.status === 200) {
+    alert("Registration successful")
+    navigate('/mainPage');
+  }
+  
   }
 
   return (
@@ -49,7 +64,8 @@ function goToRegister(){
 <br /><br />
       <label>Password:</label>
       <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-<br /><br />
+      {isMessage && <p style={{color:"red"}}>{message}</p>}
+      <br />
       <button type="submit">Login</button>
     </form>
 <p>Don't have an account? <button onClick={goToRegister}>Register</button></p>
