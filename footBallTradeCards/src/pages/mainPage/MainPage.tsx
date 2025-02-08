@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { useMainPageMW } from "./mainPageMW";
 import Header from '../header/Header';
 import { hero } from './playerModel';
+import { Link, Route, Routes } from 'react-router-dom';
+import styles from "./MainPage.module.scss";
+import Players from "../players/Players";
+import ContactUs from "../contactUs/Contactus";
+import HeroCard from '../../componants/HeroCard';
+
 
 const MainPage = () => {
     const { heros, fetchAllHeros } = useMainPageMW<hero[]>([]);
@@ -34,6 +40,9 @@ const MainPage = () => {
             </div>
         </div>
     );
-};
+  }
+      {/* הנתיבים מוצגים בתוך MainPage */}
+      // <HeroCard id='dwa' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
+      // <HeroCard id='wwwww' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
 
 export default MainPage;
