@@ -35,7 +35,7 @@ export async function addHero(req: any, res: any) {
     await _hero.validate();
 
     await _hero.save();
-    
+    res.status(200).json({ message: "Hero added successfully", _hero });
   } catch (err: any) {
     console.log(err);
     res.status(500).json({ message: "Error fetching data", err });

@@ -66,7 +66,7 @@ function RegisterForm() {
   if (response.status === 200) {
     setIsMessage(false)
     alert("Registration successful")
-    navigate('/mainPage');
+    navigate('/login');
   }
 }
   
