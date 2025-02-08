@@ -12,10 +12,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cors({
-  origin: 'http://localhost:5173', // Exact origin, not wildcard
+  origin: ['http://localhost:5173', 'http://localhost:5174'], // Array of allowed origins
   credentials: true
 }));
-
 
 
 export const secretKey = String(process.env.SECRET_JWT) || "1234";

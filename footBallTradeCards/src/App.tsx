@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import WelcomePage from '../public/firstPage/WelcomePage'
+
+import "./App.css";
+import WelcomePage from "./pages/firstPage/WelcomePage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <WelcomePage />
-
+      <WelcomePage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

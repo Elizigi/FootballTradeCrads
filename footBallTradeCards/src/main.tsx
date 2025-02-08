@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import Login from "../public/login/Login.tsx";
-import Register from "../public/register/Register.tsx";
-import MainPage from "../public/mainPage/MainPage.tsx";
+import Login from "./pages/login/Login.tsx";
+import Register from "./pages/register/Register.tsx";
+import MainPage from "./pages/mainPage/MainPage.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
