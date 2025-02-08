@@ -41,6 +41,7 @@ function RegisterForm() {
     const _userName = formData.userName;
     const email = formData.email;
     const password = formData.password;
+    const rePassword = formData.confirmPassword;
 
     // ali word for this
     // send form data to server
@@ -48,7 +49,8 @@ function RegisterForm() {
     const response = await fetch('http://localhost:3000/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({_userName, email, password}),
+      credentials: 'include', 
+      body: JSON.stringify({_userName, email, password,rePassword}),
   });
 
   if (response.status == 400) {

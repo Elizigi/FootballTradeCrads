@@ -11,11 +11,14 @@ const port = 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cors({ origin: "*"})); // לא מומלץ בפרודקשן
+app.use(cors({
+  origin: 'http://localhost:5173', // Exact origin, not wildcard
+  credentials: true
+}));
 
 
 
-export const secretKey = process.env.SECRET_JWT || "1234";
+export const secretKey = String(process.env.SECRET_JWT) || "1234";
 export const saltRounds = Number(process.env.SALT_BCRYPT) || 3;
 
 
@@ -26,7 +29,7 @@ const dbUrl = process.env.DB_URL;
 const database = 'football';
 
 //connection
-mongoose.connect(`${dbUrl}/${database}`).then(()=>{
+mongoose.connect(`${dbUrl}${database}`).then(()=>{
     console.info("DB connected")
 }).catch((err)=>{
     console.error(err)

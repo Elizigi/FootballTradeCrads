@@ -1,6 +1,6 @@
 import { UserModel } from "./userModel";
 
-export class infoValidator {
+export class InfoValidator {
     regN: RegExp;
     regE: RegExp;
     regP: RegExp;
@@ -13,18 +13,18 @@ export class infoValidator {
     }
  
     isNameValid(name: string) {
-      if (this.regN.test(name) == false) return "invalid name";
+      if (!this.regN.test(name)) return "invalid name";
       return "";
     }
     isEmailValid=async(email: string) =>{
       const emailExist = await UserModel.findOne({ email });
-      if (this.regE.test(email) == false)
+      if (!this.regE.test(email) )
         return "invalid email : email needs @ and a .com ending";
       if (emailExist) return "invalid email : email already exists!";
       return "";
     }
     isPasswordValid(password: string) {
-      if (this.regP.test(password) == false)
+      if (!this.regP.test(password))
         return "invalid password : password requires one Uppercase letter <br> and one special letter(@#!$%#^&*)";
       return "";
     }
@@ -34,6 +34,6 @@ export class infoValidator {
       return "";
     }
   }
-export const infoValidation: infoValidator = new infoValidator();
+export const infoValidation: InfoValidator = new InfoValidator();
   
   

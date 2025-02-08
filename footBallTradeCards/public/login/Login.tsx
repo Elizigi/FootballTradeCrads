@@ -35,9 +35,12 @@ function goToRegister(){
     const password = formData.password;
 
     const response = await fetch('http://localhost:3000/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({email, password}),
+      method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include', 
+    body: JSON.stringify({ email, password }),
   });
 
   if (response.status === 400) {
@@ -47,7 +50,7 @@ function goToRegister(){
   }
 
   if (response.status === 200) {
-    alert("Registration successful")
+    alert("Login successful")
     navigate('/mainPage');
   }
   
