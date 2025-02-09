@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { hero } from "./playerModel";
+import {  useState } from "react";
+import { Hero } from "../../model/Hero";
 
 export function useMainPageMW() {
-    const [heros, setHeros] = useState<hero[]>([]);
+    const [heros, setHeros] = useState<Hero[]>([]);
 
 async function fetchAllHeros() {
     try {
@@ -18,8 +18,9 @@ async function fetchAllHeros() {
         }
 
         const data = await response.json();
+        const {heros} =data;
         console.log("Data received:", data);  // להוסיף
-        setHeros(data);
+        setHeros(heros);
     } catch (error) {
         console.error("Error fetching players:", error);
     }

@@ -1,8 +1,4 @@
-import React from 'react'
-import Players from "../players/Players";
-import ContactUs from "../contactUs/Contactus";
-import MainPage from '../mainPage/MainPage';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from "./Header.module.scss"
 
 const Header = () => {

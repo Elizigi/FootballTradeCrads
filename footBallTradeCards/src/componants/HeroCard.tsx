@@ -46,7 +46,7 @@ const HeroCard: FC<HeroProps> = ({
     <div className={styles.cardWrapper} key={id}>
       <div className={styles.heroCard}>
         <h2 className={styles.cardHeader}>{fullName}</h2>
-        <img src={img} alt={`${fullName} image`} />
+        <img src={img} alt={fullName+"image"} />
         <p>Age: {age}</p>
         <p>Team: {team}</p>
         <p>Position: {position}</p>
