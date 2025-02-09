@@ -21,28 +21,19 @@ const MainPage = () => {
         <div>
             <h1>All Heroes:</h1>
             <Header />
-            <div>
+                <div className={styles.cards}>
                 {heros.heros?.length > 0 ? (
-                    heros.heros.map((hero: hero, index) => (
+                      heros.heros.map((hero: hero, index) => (
                         <div key={index} className="player-card">
-                            <h1>{hero.fullName}</h1>
-                            <p>Position: {hero.position}</p>
-                            <p>Age: {hero.age}</p>
-                            <p>Team: {hero.team}</p>
-                            <p>Rating: {hero.totalRating}</p>
-                            <p>Total rating: {hero.totalRatingCount}</p>
-                            <p>----------------------------------</p>
+                            <HeroCard id='dwa' age={5} fullName={hero.fullName} img={hero.img} myCard={true} position={hero.position} team={hero.team} totalRating={hero.totalRating} totalRatingCount={hero.totalRatingCount} />
                         </div>
                     ))
                 ) : (
                     <h1>No players available</h1>
                 )}
-            </div>
-        </div>
-    );
-  }
-      {/* הנתיבים מוצגים בתוך MainPage */}
-      // <HeroCard id='dwa' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
-      // <HeroCard id='wwwww' age={5} fullName='me' img='aaaaaaa' myCard={true} position='forward' team='my team' totalRating={5} totalRatingCount={1} />
+              </div>
+      </div>
+    )
+}
 
 export default MainPage;

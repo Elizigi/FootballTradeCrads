@@ -19,7 +19,7 @@ async function handleSubmit (event: React.FormEvent) {
         event.preventDefault();
         console.log('Form submitted:', formData);
         const fullName = formData.fullName
-        const imageUrl = formData.imageUrl
+        const img = formData.imageUrl
         const team = formData.team
         const age = formData.age
         const position  = formData.position
@@ -27,7 +27,7 @@ async function handleSubmit (event: React.FormEvent) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include', 
-        body: JSON.stringify({fullName,imageUrl,team,age,position})
+        body: JSON.stringify({fullName,img,team,age,position})
         });
           if (response.status === 200) {
             alert("Player added successfully")
