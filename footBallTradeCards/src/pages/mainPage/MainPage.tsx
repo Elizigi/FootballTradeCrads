@@ -19,21 +19,32 @@ const MainPage = () => {
 
     return (
         <div>
-            <h1>All Heroes:</h1>
-            <Header />
-                <div className={styles.cards}>
-                {heros.heros?.length > 0 ? (
-                      heros.heros.map((hero: hero, index) => (
-                        <div key={index} className="player-card">
-                            <HeroCard id='dwa' age={5} fullName={hero.fullName} img={hero.img} myCard={true} position={hero.position} team={hero.team} totalRating={hero.totalRating} totalRatingCount={hero.totalRatingCount} />
-                        </div>
-                    ))
-                ) : (
-                    <h1>No players available</h1>
-                )}
-              </div>
-      </div>
-    )
+          <h1>All Heroes:</h1>
+          <Header />
+          <div className={styles.cards}>
+            {heros.heros?.length > 0 ? (
+              heros.heros.map((hero: hero, index) => (
+                <div key={index} className="player-card">
+                  <HeroCard 
+                    id="dwa" 
+                    age={hero.age} 
+                    fullName={hero.fullName} 
+                    img={hero.img} 
+                    myCard={true} 
+                    position={hero.position} 
+                    team={hero.team} 
+                    totalRating={hero.totalRating} 
+                    totalRatingCount={hero.totalRatingCount} 
+                  />
+                </div>
+              ))
+            ) : (
+              <h1>No players available</h1> //  הוספנו אלמנט שיחזור אם אין שחקנים
+            )}
+          </div>
+        </div>
+      );
+      
 }
 
 export default MainPage;
