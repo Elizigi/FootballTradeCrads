@@ -1,5 +1,7 @@
 import { FC } from "react";
 import styles from "./HeroCardStyle.module.scss";
+import { PopupData } from "../model/PopupData";
+import RateDeleteVM from "./RateDeleteVM";
 
 interface HeroProps {
   id: string;
@@ -11,6 +13,7 @@ interface HeroProps {
   position: string;
   totalRating: number;
   totalRatingCount: number;
+  setPopup: (data: PopupData) => void; // Accept a function that takes data
 }
 
 const HeroCard: FC<HeroProps> = ({
@@ -23,7 +26,12 @@ const HeroCard: FC<HeroProps> = ({
   position,
   totalRating,
   totalRatingCount,
+  setPopup,
 }) => {
+
+  const {deleteToServer}=RateDeleteVM();
+
+
   function calculateRating() {
     const rating = Math.round(totalRating / totalRatingCount);
 
@@ -34,12 +42,11 @@ const HeroCard: FC<HeroProps> = ({
     ));
   }
 
-  function deleteCard() {
-    console.log("Deleting card:", id);
-  }
+
 
   function rateCard() {
     console.log("Rating card:", id);
+    setPopup({id:id,name:fullName});
   }
 
   return (
@@ -54,11 +61,11 @@ const HeroCard: FC<HeroProps> = ({
       </div>
 
       {myCard && (
-        <button className={styles.delete} onClick={deleteCard}>
+        <button className={styles.delete} onClick={()=>deleteToServer(id)}>
           Delete
         </button>
       )}
-
+    
       <button className={styles.rate} onClick={rateCard}>
         Rate
       </button>

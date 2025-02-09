@@ -1,0 +1,40 @@
+.ratePopup {
+  width: 250px;
+  height: 200px;
+  border: solid 1px rgb(51, 119, 171);
+  background-color: rgb(65, 129, 208);
+  border-radius: 30px;
+  position: fixed;
+  left: calc(50% - 125px);
+  top: calc(50% - 125px);
+  color: white;
+}
+.starBox {
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+}
+.star {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  color: rgba(230, 230, 229, 0.811);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0px 0px 2px rgba(0, 0, 0, 0.5),
+    1px -1px 2px rgba(0, 0, 0, 0.5), -1px 2px 2px rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+
+  &:hover {
+    color: gold;
+    cursor: pointer;
+  }
+  .starButton {
+    background: none;
+    color: inherit;
+    border: none;
+    text-shadow:inherit;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer; 
+    outline: none; 
+  }
+}

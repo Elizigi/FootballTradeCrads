@@ -12,8 +12,8 @@ const router = express.Router()
 router.get(`/fetch-heros`,fetchHeros );
 router.get(`/fetch-my-heros`,fetchMyHeros );
 router.post(`/add-hero`,addHero );
-router.delete(`/delete:id`,deleteHero );
-router.put(`/:id/rate`,rateHero );
+router.delete(`/delete/:id`,deleteHero );
+router.post(`/:id/rate`,rateHero );
 router.get(`filter/:rating`,filterByRating)
 
 export default router;

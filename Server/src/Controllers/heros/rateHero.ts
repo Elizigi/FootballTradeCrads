@@ -1,5 +1,5 @@
+import { HeroModel } from "../../Model/heroModel";
 import { MyHeroModel } from "../../Model/myHeroJoinedTable";
-import { UserModel } from "../../Model/userModel";
 import { secretKey } from "../../server";
 import jwt from "jwt-simple";
 
@@ -17,25 +17,29 @@ export async function rateHero(req: any, res: any) {
     if (typeof rating !== "number" || rating < 0 || rating > 5) {
       throw new Error("Invalid rating value");
     }
-    
+
     const id = decoded.userId;
     if (!id) throw new Error("error getting id");
 
-    const isHeroRated = await MyHeroModel.findOne({ creatorId: id ,heroId:heroId});
+    const isHeroRated = await MyHeroModel.findOne({
+      creatorId: id,
+      heroId: heroId,
+    });
 
-    if(isHeroRated){
-    return  res.status(20).json({message:"already rated"});
+    if (isHeroRated) {
+      return res.status(20).json({ message: "already rated" });
     }
+    console.log(heroId);
 
-    const userFound = await UserModel.findOneAndUpdate(
-      { _id: id },
+    const heroFound = await HeroModel.findOneAndUpdate(
+      { _id: heroId },
       {
-        $inc: { totalRating: +rating, totalRatingCount: 1 },
+        $inc: { totalRating: rating, totalRatingCount: 1 },
       },
       { new: true }
     );
 
-    if (!userFound) throw new Error("user not found!");
+    if (!heroFound) throw new Error("user not found!");
 
     const _rateHero = new MyHeroModel({
       creatorId: id,
@@ -45,7 +49,7 @@ export async function rateHero(req: any, res: any) {
     await _rateHero.validate();
 
     await _rateHero.save();
-    res.status(200).json({message:"rated successfully"})
+    res.status(200).json({ message: "rated successfully" });
   } catch (err: any) {
     console.log(err);
     res.status(500).json({ message: "Error fetching data", err });
