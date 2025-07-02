@@ -15,11 +15,8 @@ app.use(cors({
   origin: ['http://localhost:5173', 'http://localhost:5174'], // Array of allowed origins
   credentials: true
 }));
-
-
-export const secretKey = String(process.env.SECRET_JWT) || "1234";
-export const saltRounds = Number(process.env.SALT_BCRYPT) || 3;
-
+export const secretKey = String(process.env.SECRET_JWT);
+export const saltRounds = Number(process.env.SALT_BCRYPT);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/heroes", playerRoutes);
